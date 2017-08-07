@@ -12,7 +12,7 @@
 
 > http://temp.163.com/special/00804KVA/cm_yaowen_04.js?callback=data_callback
 
-格式为：
+只需要改为：
 - ...cm_yaowen.js...
 - ...cm_yaowen_01.js...
 - ...cm_yaowen_02.js...
@@ -22,8 +22,8 @@
 
 ### 最新评论
 > http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CR67N2K50001899N/comments/newList?offset=0&limit=40&showLevelThreshold=72&headLimit=1&tailLimit=2&callback=getData&ibc=newspc&_=1502083131717
+####
 一般只需要改 `offset=0`
-
 ```
 "148774978":{
     "against":0 # **反对数**
