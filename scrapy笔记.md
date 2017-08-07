@@ -57,3 +57,7 @@
 
 ### 正文
 直接正则内容
+
+## 推荐阅读内容
+> [python爬虫的最佳实践](http://www.jianshu.com/u/d2170a042ddb)
+包含mongodb、动态加载、selenium、抓包在内的内容
