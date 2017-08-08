@@ -65,12 +65,13 @@
 # 澎湃
 [澎湃新闻](http://www.thepaper.cn/)，XHR格式抓包：
 > http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=3&lastTime=1502177429969
->- http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=12&lastTime=1502123413588
->- http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=11&lastTime=1502150956482
->- http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=9&lastTime=1502156924558
->- http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=9&lastTime=1502156924558
+对比采集到的多条jsp：
+>>* http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=12&lastTime=1502123413588
+>>* http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=11&lastTime=1502150956482
+>>* http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=9&lastTime=1502156924558
+>>* http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=9&lastTime=1502156924558
 
-当然我们只要改变`pageidx=3`就可以了
+所以我们只要改变`pageidx=3`和`lastTime=(10位当前系统时间)`就可以了，10位当前系统时间在`Java`下直接用`Systemillions()`就可以，`Python`需要再取整
 
 ## 推荐阅读内容
 > [python爬虫的最佳实践](http://www.jianshu.com/u/d2170a042ddb)
