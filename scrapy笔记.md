@@ -8,8 +8,10 @@
 
 ---
 
-事实上手机版由于加载更多的存在并不好直接爬取，所以转换方式选择 [网易新闻](http://news.163.com/) ，抓包观察发现其中的`cm_yaowen.js`会返回json数据
+事实上手机版由于加载更多的存在并不好直接爬取，所以转换方式选择 [网易新闻](http://news.163.com/) 
 
+# 网易新闻
+[网易新闻](http://news.163.com/)，抓包观察发现其中的`cm_yaowen.js`会返回json数据：
 > http://temp.163.com/special/00804KVA/cm_yaowen_04.js?callback=data_callback
 
 只需要改为：
@@ -63,3 +65,7 @@
 ## 推荐阅读内容
 > [python爬虫的最佳实践](http://www.jianshu.com/u/d2170a042ddb)
 包含mongodb、动态加载、selenium、抓包在内的内容
+
+# 澎湃
+[澎湃新闻](http://www.thepaper.cn/)，XHR格式抓包：
+> http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=3&lastTime=1502177429969
