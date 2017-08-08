@@ -62,10 +62,13 @@
 ### 正文
 直接正则内容
 
+# 澎湃
+[澎湃新闻](http://www.thepaper.cn/)，XHR格式抓包：
+> http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=3&lastTime=1502177429969
+
+当然我们只要改变`pageidx=3`就可以了
+
 ## 推荐阅读内容
 > [python爬虫的最佳实践](http://www.jianshu.com/u/d2170a042ddb)
 包含mongodb、动态加载、selenium、抓包在内的内容
 
-# 澎湃
-[澎湃新闻](http://www.thepaper.cn/)，XHR格式抓包：
-> http://www.thepaper.cn/load_chosen.jsp?nodeids=25949&topCids=1754916,1752511,1755796,1755438,&pageidx=3&lastTime=1502177429969
