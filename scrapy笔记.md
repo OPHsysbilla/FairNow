@@ -25,7 +25,20 @@
 ### 最新评论
 > http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CR67N2K50001899N/comments/newList?offset=0&limit=40&showLevelThreshold=72&headLimit=1&tailLimit=2&callback=getData&ibc=newspc&_=1502083131717
 ####
-一般只需要改 `offset=0`
+1. 一般只需要改 `offset=0`，`_=时间戳`,`a2869674571f77b5a0867c3d71db5856`是productKey，似乎是不变的？可能跟IP有关，但是我换VPN也没有变，`CR67N2K50001899N`是帖子id
+2. 当参数错误时：
+> ```
+> getData(
+> {"code":"42212","message":"Illegal pagination parameters"});
+> ```
+当`offset`超过上限会变成下面这样：( 其中`newListSize`是上限 )
+```
+getData(
+{"commentIds":[],"comments":{},"newListSize":9037});
+```
+
+---
+
 ```
 "148774978":{
     "against":0 # **反对数**
@@ -41,7 +54,7 @@
         "userId":55412370
       },
     "ip":"113.245.*.*",
-    "postId":"CR67N2K50001899N_148774978",
+    "postId":"CR67N2K50001899N_148774978", **格式是[帖子id_发言用户id]**
     "anonymous":false
     "buildLevel":3,  #更了多少层
     "commentId":148774978,  
