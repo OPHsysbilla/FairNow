@@ -48,7 +48,7 @@
 > http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CR67N2K50001899N/comments/newList?offset=0&limit=40&showLevelThreshold=72&headLimit=1&tailLimit=2&callback=getData&ibc=newspc&_=1502083131717
 
 ####
-1. 一般只需要改 `offset=0`，`_=时间戳`，`a2869674571f77b5a0867c3d71db5856`是productKey，似乎是不变的？可能跟IP有关，但是我换VPN也没有变，`CR67N2K50001899N`是帖子id
+1. 一般只需要改 `offset=0`，`_=时间戳`(时间戳会多出小数点后几位，并且服务器时间戳要慢几秒)，`a2869674571f77b5a0867c3d71db5856`是productKey，似乎是不变的？可能跟IP有关，但是我换VPN也没有变，`CR67N2K50001899N`是帖子id
 2. 当参数错误时：
 > ```
 > getData(
