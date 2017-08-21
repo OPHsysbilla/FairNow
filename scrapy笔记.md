@@ -9,8 +9,24 @@
 ---
 
 事实上手机版由于加载更多的存在并不好直接爬取，所以转换方式选择 [网易新闻](http://news.163.com/) 
+## Srart
+1. 从排行(http://news.163.com/rank/)中匹配`更多`的地址
+3. class = area areabg1，选择/html/body/div[4]
+2. 正则匹配更多里的所有地址，保留 href="http://news.163.com/....，里面有帖子id
+3. 每篇新闻先检测帖子id是否进去过
+4. 没进过，选择#endText中<p>标签内所有中文，抛弃图片<img>，删掉<strong> 等；
+> 没有#endText，则说明这是一篇图集，直接读取`<textarea name="gallery-data" style="display:none;">`内的内容，是json格式的
+> 同时图集的帖子id不是点进去的地址，是需要在网页中搜索"docId"，才是真正的帖子id
+```	
+ var config = {
+		"productKey" : "a2869674571f77b5a0867c3d71db5856",
+		"docId" :  "PHOT25AKN000100A",
+ }
+```
 
-# 网易新闻
+
+
+## 网易新闻
 [网易新闻](http://news.163.com/)，抓包观察发现其中的`cm_yaowen.js`会返回json数据：
 > http://temp.163.com/special/00804KVA/cm_yaowen_04.js?callback=data_callback
 
@@ -30,6 +46,7 @@
 
 ### 最新评论
 > http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CR67N2K50001899N/comments/newList?offset=0&limit=40&showLevelThreshold=72&headLimit=1&tailLimit=2&callback=getData&ibc=newspc&_=1502083131717
+
 ####
 1. 一般只需要改 `offset=0`，`_=时间戳`，`a2869674571f77b5a0867c3d71db5856`是productKey，似乎是不变的？可能跟IP有关，但是我换VPN也没有变，`CR67N2K50001899N`是帖子id
 2. 当参数错误时：
