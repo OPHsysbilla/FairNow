@@ -12,9 +12,9 @@
 ## Srart
 1. 从排行(http://news.163.com/rank/)中匹配`更多`的地址
 3. class = area areabg1，选择/html/body/div[4]
-2. 正则匹配更多里的所有地址，保留 href="http://news.163.com/....，里面有帖子id
+2. 正则匹配更多里的所有地址，保留 `href="http://news.163.com/....`，里面有帖子id
 3. 每篇新闻先检测帖子id是否进去过
-4. 没进过，选择#endText中<p>标签内所有中文，抛弃图片<img>，删掉<strong> 等；
+4. 没进过，选择#endText中<p>标签内所有中文，抛弃图片<img>，删掉<strong> 等
 > 没有#endText，则说明这是一篇图集，直接读取`<textarea name="gallery-data" style="display:none;">`内的内容，是json格式的
 > 同时图集的帖子id不是点进去的地址，是需要在网页中搜索"docId"，才是真正的帖子id
 ```	
