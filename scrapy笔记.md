@@ -10,7 +10,7 @@
 
 事实上手机版由于加载更多的存在并不好直接爬取，所以转换方式选择 [网易新闻](http://news.163.com/) 
 ## Srart
-1. 从排行(http://news.163.com/rank/)中匹配`更多`的地址,`class="more"`可以完美匹配所符合的`response.css('.more>a').extract()`
+1. 从排行(http://news.163.com/rank/)中匹配`更多`的地址,`class="more"`可以完美匹配所符合的` response.css('.more>a::attr(href)').extract()`，除了最后一个 `rank_m` 会导向到移动端
 3. class = area areabg1，选择/html/body/div[4]
 2. 正则匹配更多里的所有地址，保留 `href="http://news.163.com/....`，里面有帖子id
 3. 每篇新闻先检测帖子id是否进去过
