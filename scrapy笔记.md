@@ -58,13 +58,16 @@
     - id = 'content'
     - 普通方式在html中搜索docId，拼接CommentApi             
     - 另一种sdk-api接口要求很严格：
-    - `http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk                   &callback=tool1009860388490201624_1503377054054&_=1503377054055`
-  - [网易彩票] http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
+    - 
+    ```
+    http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk&callback=tool1009860388490201624_1503377054054&_=1503377054055
+    ```
+  - [网易彩票]http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
     - 和普通新闻一样的
-  - [房产图集] http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS
+  - [房产图集]http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS
     - 和普通图集一样
     - 不用正文直接评论即可
-  - [槽值] http://caozhi.news.163.com/17/0821/12/CSC5PTA2000181TI.html
+  - [槽值]http://caozhi.news.163.com/17/0821/12/CSC5PTA2000181TI.html
     - id = 'endText' 
     - 普通方式在html中搜索docId，拼接CommentApi       
   - [图集]获得图集的唯一方式恐怕是爬取链接
