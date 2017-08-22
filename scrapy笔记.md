@@ -57,12 +57,11 @@
   - [专题 网易号]http://dy.163.com/v2/article/detail/CSBR18FG0515GFLV.html    
     - id = 'content'
     - 普通方式在html中搜索docId，拼接CommentApi             
-    - 另一种sdk-api接口要求很严格：
-    - 
-    ```
-    http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk&callback=tool1009860388490201624_1503377054054&_=1503377054055
-    ```
-  - [网易彩票]http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
+    - 另一种sdk-api要求很严格：
+    [接口](http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk&callback=tool1009860388490201624_1503377054054&_=1503377054055
+)
+---
+  - [网易彩票]http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
     - 和普通新闻一样的
   - [房产图集]http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS
     - 和普通图集一样
