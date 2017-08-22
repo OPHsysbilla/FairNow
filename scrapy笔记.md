@@ -58,7 +58,7 @@
     - id = 'content'
     - 普通方式在html中搜索docId，拼接CommentApi             
     - 另一种sdk-api接口要求很严格：
-    - >> http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk                   &callback=tool1009860388490201624_1503377054054&_=1503377054055
+    - `http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk                   &callback=tool1009860388490201624_1503377054054&_=1503377054055`
   - [网易彩票] http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
     - 和普通新闻一样的
   - [房产图集] http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS
@@ -74,17 +74,17 @@
       - name="gallery-data"  来自于 <textarea name="gallery-data" style="display:none;">
       - textarea是唯一的，gallery-data也是唯一的
       - 匹配其后的json就可以获得数据
-      
-      ```
-        {"info":{ 
-            setname,lmodify,source
-            有prev和next的图集链接，匹配xx.163.com/photoview/本图集数字加减可得链接
-            }
-         "list":[
-            {匹配list中每一项的note是文字}             
-         ]
-        }
-	```
+      - 如下：
+	      ```
+		{"info":{ 
+		    setname,lmodify,source
+		    有prev和next的图集链接，匹配xx.163.com/photoview/本图集数字加减可得链接
+		    }
+		 "list":[
+		    {匹配list中每一项的note是文字}             
+		 ]
+		}
+		```
     - ->  图集链接中的p不是真正的commentApi所需要的docId
       - 普通方式在html中搜索docId，拼接CommentApi           
       
