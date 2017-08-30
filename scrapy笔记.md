@@ -44,6 +44,11 @@
 * http://house.163.com/special/00078GU7/shanghai2_xw_news_v1.js?callback=data_callback
 * http://temp.163.com/special/00804KVA/cm_dujia.js?callback=data_callback(独家一般是[槽值])
 
+
+#### 每篇新闻都会传回的post接口
+
+http://temp.163.com/special/00804KV1/post1603_api_all.js?callback=callback
+
 #### 不同种类的新闻
 
 ---
