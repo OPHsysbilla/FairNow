@@ -86,15 +86,12 @@
 ---
 ** 其他类型 **
 
-类型     |    操作 
+类型     |  网址  |  操作
 ---------------------------------------|------------------------------------------------------
-网易彩票http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html | 和普通新闻一样的
- 
-房产图集http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS | 和普通图集一样, 没有正文一般
-
-槽值http://caozhi.news.163.com/17/0821/12/CSC5PTA2000181TI.html | 普通方式在id = 'endText' 中搜索docId，拼接
- 
-图集 http://new(种类).163.com/photoview/00AO0001/2272018.html#p=CSECHHJ300AO0001NOS |获得图集的唯一方式是爬取图集html里自带的上下链接
+网易彩票| http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html | 和普通新闻一样的
+房产图集| http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS | 和普通图集一样, 没有正文一般
+槽值| http://caozhi.news.163.com/17/0821/12/CSC5PTA2000181TI.html | 普通方式在id = 'endText' 中搜索docId，拼接
+图集| http://new(种类).163.com/photoview/00AO0001/2272018.html#p=CSECHHJ300AO0001NOS |获得图集的唯一方式是爬取图集html里自带的上下链接
 
 
   - 主要是 photoview
