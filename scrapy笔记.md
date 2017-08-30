@@ -24,7 +24,7 @@
  }
 ```
 
-#### 网易新闻
+### 网易新闻
 
 ---
 
@@ -56,31 +56,32 @@
 
 > http://temp.163.com/special/00804KV1/post1603_api_all.js?callback=callback
 
-#### 不同种类的新闻
+
+### 不同种类的新闻
 
 
+	1. 匹配.163.com/\d{2}/\d{4}/\d{2}/疑似16个\w.html
+	  (图集photoview另算)
 
-1.匹配.163.com/\d{2}/\d{4}/\d{2}/疑似16个\w.html
-  (图集photoview另算)
+	2. 寻找docId
 
-2.寻找docId
+	3. 寻找content或者endText，找不到则说明还有其他正文id，放弃即可
 
-3.寻找content或者endText，找不到则说明还有其他正文id，放弃即可
+	4. 拼接得新commentApi，每次调取offset写新的
 
-4.拼接得新commentApi，每次调取offset写新的
-
-- [直播] http://v.163.com/paike/VCHRH7PA5/VJR8LCOM5.html
-    - 属于others，只需要评论没有正文
-    - docId是 docId:xx 的形式而不是 "docId" : "xxx"的json格式
-    - 评论比较没营养
-- [专题 网易号]http://dy.163.com/v2/article/detail/CSBR18FG0515GFLV.html    
-    - id = 'content'
-    - 普通方式在html中搜索docId，拼接CommentApi             
+	- [直播] http://v.163.com/paike/VCHRH7PA5/VJR8LCOM5.html
+	    - 属于others，只需要评论没有正文
+	    - docId是 docId:xx 的形式而不是 "docId" : "xxx"的json格式
+	    - 评论比较没营养
+	- [专题 网易号]http://dy.163.com/v2/article/detail/CSBR18FG0515GFLV.html    
+	    - id = 'content'
+	    - 普通方式在html中搜索docId，拼接CommentApi             
 
 
-另一种sdk-api要求很严格：[接口](http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk&callback=tool1009860388490201624_1503377054054&_=1503377054055
-)
-
+	另一种sdk-api要求很严格：[接口](http://sdk.comment.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CSBR18FG0515GFLV/comments/newList?offset=0&limit=2&showLevelThreshold=70&headLimit=1&tailLimit=2&ibc=jssdk&callback=tool1009860388490201624_1503377054054&_=1503377054055
+	)
+	> 事实上 sdk.comment.163.com host开头的都是要求严格的，建议切换成[已知docId得到url](http://temp.163.com/special/00804KV1/post1603_api_all.js?callback=callback)
+---
 
 
 1. 网易彩票：http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
