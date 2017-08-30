@@ -85,26 +85,15 @@
 	
 ---
 ** 其他类型 **
+类型|操作|网址
+-------------------|-----------------------|------------------------
+网易彩票|和普通新闻一样的|http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
+ 
+房产图集|和普通图集一样, 没有正文一般|http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS
 
-1. 网易彩票：http://cai.163.com/article/17/0821/14/CSCATAAP00052DT2.html
-
-和普通新闻一样的
-
-
-2. 房产图集：http://gz.house.163.com/photonew/5N620087/72861.html#p=CQP6K0JD5N620087NOS
-
-  - 和普通图集一样
-  - 不用正文直接评论即可
-  
-3.槽值：http://caozhi.news.163.com/17/0821/12/CSC5PTA2000181TI.html
-
-  - id = 'endText' 
-  - 普通方式在html中搜索docId，拼接CommentApi       
-  
-  
-4.图集：获得图集的唯一方式恐怕是爬取链接
-
-  - http://new(种类).163.com/photoview/00AO0001/2272018.html#p=CSECHHJ300AO0001NOS   
+槽值|普通方式在id = 'endText' 中搜索docId，拼接CommentApi|http://caozhi.news.163.com/17/0821/12/CSC5PTA2000181TI.html
+ 
+图集|获得图集的唯一方式是爬取图集html里自带的上下链接|http://new(种类).163.com/photoview/00AO0001/2272018.html#p=CSECHHJ300AO0001NOS 
 
   - 主要是 photoview
   
