@@ -37,21 +37,26 @@
 - ...cm_yaowen_04.js...
 
 1. cm_yaowen_01 (00是没有的)
+
 > guoji
+
 > guonei
+
 > shehui
+
 > war 
+
 * http://house.163.com/special/00078GU7/shanghai2_xw_news_v1.js?callback=data_callback
+
 * http://temp.163.com/special/00804KVA/cm_dujia.js?callback=data_callback(独家一般是[槽值])
 
 
-#### 每篇新闻都会传回的post接口
+<!> 已知 docId 得到 url
 
-http://temp.163.com/special/00804KV1/post1603_api_all.js?callback=callback
+> http://temp.163.com/special/00804KV1/post1603_api_all.js?callback=callback
 
 #### 不同种类的新闻
 
----
 
 
 1.匹配.163.com/\d{2}/\d{4}/\d{2}/疑似16个\w.html
