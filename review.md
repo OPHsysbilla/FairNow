@@ -16,6 +16,7 @@
 > 倒数第k个就是正数第n-k+1个，和末尾间隔k-1
 >> 保持两个指针间隔k-1，当ahead指针走到末尾，behind指针和末尾间隔k-1，是第正着n-(k-1)个。倒数第k个结点
 > 注意头指针为空，求倒数第0个（不存在），结点总数小于k还求倒数第k个的情况
+10. [C/C++中sizeof()的用法——32位和64位下的sizeof（）](http://blog.csdn.net/xunfeng13/article/details/51011509)
 
 3. [不带头结点尾插入，第一个节点与其他节点分开](http://blog.csdn.net/xlf13872135090/article/details/8857632)
   ```
