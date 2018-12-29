@@ -1,0 +1,142 @@
+
+未知条例
+推荐阅读阿里巴巴的安卓手册
+1. CopyOnWriteArrayList
+2. ThreadPoolExecutor
+3. WeakHashMap
+4. Activity的SingleTask模式，使得onIntent可用
+5. notifyItemChanged，因为DataSetChange可能会造成闪烁
+6. Producer Extends Consumer Super
+7.  <? extends Fruits>   <? super Apple>
+8.  基于Window.ID_ANDROID_CONTENT给定id添加子View
+9.  ArrayList ，LinkedList不同步   Vector同步
+10. HashSet，LinkedHashSet,HashMap 不同步 
+11. HashTable 同步
+12. 同步的ArrayList = Collections.synchronizedList(new ArrayList(...));
+13. SpannableString
+14. onActivityResult()发生在onResume()之前
+15. onFinishInflate()在加载完成xml后执行：只有当自定义View，通过在XML中创建时才会调用。不从xml布局文件中解析的话，比如通过new方式创建，则不会执行该方法；
+16.  foreach使用前需要判空
+17. overridependingtransition()进入动画需要再startActivity之后，退出动画需要再finish后
+18. [事件分发](http://www.gcssloop.com/customview/dispatch-touchevent-source)
+19. view的调用过程:构造方法->onFinishInflate->onSizeChanged->onDraw
+20. 如果用户finish()方法结束了Activity，则不会调用onSaveInstanceState()
+21. getIntrinsicWidth()和getIntrinsicHeight()
+22. canvas的好处之一是旋转画布后旋转回来，以达到图像绘制部分的旋转，不用对坐标点进行转置
+23. 用transient关键字标记的成员变量不参与序列化过程
+24. SharedPreferences是文件的一种，它的读写有一定的缓存策略，即在内存中会有一份SharedPreferences文件的缓存，因此在多进程模式下，系统对它的读写就变得不可靠，当面对高并发读写访问的时候，有很大几率会丢失数据，因此，不建议在进程间通信中使用SharedPreferences
+25. Messenger是一种轻量级的IPC方案，它的底层实现就是AIDL。Messenger是以串行的方式处理请求的，即服务端只能一个个处理，不存在并发执行的情形
+26. 滑动冲突处理：可以根据滑动距离和水平方向形成的夹角；或者根绝水平和竖直方向滑动的距离差；或者两个方向上的速度差等
+27. getParent().requestDisallowInterceptTouchEvent(false)
+28. getSuggestedMinimumWidth的逻辑：View如果没有背景，那么返回android:minWidth这个属性指定的值，这个值可以为0；如果设置了背景，则返回背景的最小宽度和minWidth中的较大值。
+29. Fragment的动画setCustomAnimations()对于反射取FragmentManager中置儿子为null的是有问题的，建议用Fragment自己的onCreateAnimation()函数
+30. OOM：尽量避免使用帧动画，使用的话应尽量避免使用过多尺寸较大的图片
+31. 内存泄露：属性动画中的无限循环动画需要在Activity退出的时候及时停止，否则将导致Activity无法释放而造成内存泄露。view动画不存在这个问题；
+32. 内切圆正方形距离顶部 `(1 - sqrt(2)/2)*r`，![img](https://img-blog.csdn.net/20170105161715144?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmdzczQxNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+14.  当调用到onNewIntent(intent)的时候，需要在onNewIntent() 中使用setIntent(intent)赋值给Activity的Intent.否则，后续的getIntent()都是得到老的Intent
+15.  launchMode为singleTask的时候，通过Intent启到一个Activity,如果系统已经存在一个实例，系统就会将请求发送到这个实例上，但这个时候，系统就不会再调用通常情况下处理请求数据的onCreate方法，而是调用onNewIntent方法	
+16. DiffUtil.DiffResult可以使RecyclerView不添加相同的条目，即部分更新
+17. RelativeLayout如果cast到FrameLayout是不必要的，view就可以
+18. 自定义view，一定是this(context)、this(context,attr)、super(context, attr, defaltStyle)，注意需要手动调init()或者this(context, null)与this(context,attr,0)
+19. 小心使用ArrayList的subList [a, b) ，对生成对新列表的改变会改变原列表结构，可以在新列表前加final来阻止后续更改
+*  RequestLayout() , Invalidate() , layout()
+* 如果需要addView的话，那么使用getLayoutParams是没用的，因为这个你自己新建的一个View，没有与父容器有任何关联。所以LayoutParams也需要你自己创建	
+* contentInsetStart消除ToolBar在自定义布局中的左部白边
+*  JSON中的get和opt方法的区别在于opt不报错
+* @Transient标志则不入数据库
+* overridePendingTransition转移
+* 由于Activity的TaskMode不同所以onActivityResult在Activity的生命周期中执行的先后也是不同的，更有onCreate不会执行的情况，所以onActivityResult有时候提前结束收不到result。
+* 调用startActivityForResult后onActivityResult立刻响应，而返回当前页时onActivityResult不响应主要是launchMode的问题：
+  - 第一种：当resultCode==0时，Activity的launchMode必须设置为”singleTask”或者singleInstance，否则就会出错。这是因为从Task的角度看，Android认为不同Task之间的Activity是不能传递数据的，所以不能使用NEW_TASK标识，但还是要调用forResult方法。
+  - 第二种：当resultCode！=0时，Activity的launchMode必须为standard（删除launchMode属性默认为standard模式），原因同上。
+* 只有第一层fragment会收到onActivityResult
+  - 重写onBackPressed() 自定义回退事件可以避免按Back键自动设置resultCode为RESULT_CANCELED的问题
+  - requestCode >=0就好，随便用于在onActivityResult()区别哪个子模块回传的数据，每个区分开不同的requestCode
+   - resultCode 如果B子模块可能有几种不同的结果返回，可以用setResut(int resultCode, Intent intent)予以识别区分
+1. `@IntDef` 注解自定义了一个 OrientationType 注解，用于防治用户随意设置数值。
+使用 `@IntRange` 方法将行列数限制在一个较合理的范围内。
+```JAVA
+@IntDef({VERTICAL, HORIZONTAL})
+public @interface OrientationType {}            // 滚动类型
+
+@OrientationType
+private int mOrientation = HORIZONTAL;          // 默认水平滚动
+```
+2. View child = recycler.getViewForPosition(i);   //如果不存在的话 RecyclerView 会自动创建
+3. RecyclerView要先移除再添加，这样会移除的 View 会被先放到缓冲区中，再添加 View 时就可以直接从缓冲区中把被移除的条目直接取出来使用了，而不用重新创建，以减少开销；如果先添加，由于缓冲区中没有可以使用的 View，会进行先创建，之后再添加到界面上，最后执行移除操作会导致有大量的 View 滞留在缓冲区中，会造成严重的性能浪费
+4. 对Vector、ArrayList在迭代的时候如果同时对其进行修改就会抛出 java.util.ConcurrentModificationException 异常
+5. LinkedList在遍历循环中get(i)时间复杂度为O(n)，比ArrayList的O(1)性能差，使用有迭代器(Iterator)以及ForEach循环来对LinkedList进行遍历
+6. 对Activity来说，所有需要传递或接收的Activity不允许设置launchmode="SingleTask"，只能设为标准模式，否则系统将在 startActivityForResult() 后直接调用 onActivityResult()。
+7. [](http://www.importnew.com/28263.html)
+8. Builder模式下，需要Builder单独列出的原因之一是，在使用单例模式时，每次都是用的同一个instance，而参数每次都需要重新new一个；不单独写一个Builder出来（第二重）是由于每次都重新new了一个XXX实例，当然参数也每次都不一样
+```
+//第一种
+class XXX{
+    //普通单例模式
+    private static XXX instance;
+    public  static XXX getInstance(){
+        if(instance == null){
+            return new instance;
+        }
+    }
+
+    private XXX{}
+    class Builder(){
+        void set(){
+            ...
+            return Builder.this;
+        }
+    }
+}
+//第二种
+class XXX{
+    void set(){
+        ...
+        return XXX.this;
+    }
+}
+```
+9. Encapsulate Collection
+10. 基于引用计数的垃圾回收器无法处理循环引用导致的内存泄露问题，但是其在主流的JVM中很少，几乎所有的JVM都是采用引用对象遍历的方法，垃圾回收器都会处理循环引用潜在的问题
+11. ThreadLocal、Volatile、synchronized、Atomic 的区别？
+说如果只有一个i++;的时候，volatile和synchronized能否互换？volatile作为修饰变量的时候，变量自加会出现加到一半发生线程调度。
+volatile 可以保证在一个线程的工作内存中修改了该变量的值，该变量的值立即能回显到主内存中，从而保证所有的线程看到这个变量的值是一致的。但是有个前提，因为它不具有操作的原子性，也就是它不适合在对该变量的写操作依赖于变量本身自己。就比如i++、i+=1;这种。但是可以改为num=i+1;如果i是一个 volatile 类型，那么num就是安全的，总之就是不能作用于自身。
+synchronized是基于代码块的，只要包含在synchronized块中，就是线程安全的。
+既然都说了线程安全，就多了解几个：
+AtomicInteger，一个轻量级的synchronized。使用的并不是同步代码块，而是Lock-Free算法(我也不懂，看代码就是一个死循环调用了底层的比较方法直到相同后才退出循环)。最终的结果就是在高并发的时候，或者说竞争激烈的时候效率比synchronized高一些。
+ThreadLocal，线程中私有数据。主要用于线程改变内部的数据时不影响其他线程，使用时需要注意static。
+再补一个，才学到的。利用clone()方法，如果是一个类的多个对象想共用对象内部的一个变量，而又不想这个变量static，可以使用浅复制方式。(查看设计模式原型模式)
+12. HashTable、SynchronizedCollection、ConcurrentHashMap、Vector
+13. [静态内部类单例原理](https://blog.csdn.net/mnb65482/article/details/80458571)，静态内部类单例在反序列化时会重新生成新对象因此需要抛出一个异常，反序列化是比正常创建新对象慢的
+14. compare and set (CAS)，不断重新取值比较，可能会出现ABA问题（中途值被修改又还原）
+15. [Message全程持有发送该消息Handler的引用 直到Handler处理完消息，Message回收释放](https://upload-images.jianshu.io/upload_images/2158254-ede2828fcff9398e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+实际上经常会出现的Diaglog泄漏就是，Dialog销毁的时候Activity已经销毁，所以会发不出那个Handler
+16. git commit --amend
+17. onScroll和onFling的区别在于，onFline是用于滑动的最后一下
+18. 不要重复 setListener，要使用 v.getId 来复用 Listener，不然会创建一堆 Listener 导致频繁 GC
+19. final与static final的区别是：final在一个对象类唯一，static final在多个对象中都唯一；
+一个既是static又是final的域只占据一段不能改变的存储空间，只有一份。
+20. View的UI刷新，不会导致阻塞的原因是View 的绘制与 Java 代码的looper无关，而是由底层 SurfaceFlinger 自身的事件处理机制处理的
+ - > 因为不光是gui，同样的道理在几乎所有编程领域里都是这样的，这背后是线程同步的开销问题。显然两个线程不能同时draw，否则屏幕会花；不能同时insert map，否则内存会花；不能同时write buffer，否则文件会花。需要互斥，比如锁。结果就是同一时刻只有一个线程可以做ui。那么当两个线程互斥几率较大时，或者保证互斥的代码复杂时，选择其中一个长期持有其他发消息就是典型的解决方案。所以普遍的要求ui只能单线程
+21. onChildDraw影响触摸事件的接受顺序
+22. 对组件 Activity 而言，viewRootImpl 的初始化在 onCreate 之后，onResume 之后，故在onCreate里开子线程更新UI不会报错
+23. [Glide中into()同一View，但显示不同的图片时（url不同），是使用的同一个Bitmap引用地址，只是像素不一样（在onResourceReady()里可以打印得到的bitmap的地址是一样的）](https://www.cnblogs.com/linguanh/p/8514643.html)。这是因为BitmapPool会复用Request，可能会拿到擦除过的bitmap
+24. bitmap对象是通过env->NewOject(...)，所以是分配在虚拟机中的
+25. RecyclerView.OnScrollListener()来监听RecyclerView的滚动距离，正常情况下是没有问题的，但是一旦RecyclerView的数据源变了的时候，比如筛选条件变了，需要清除之前的数据，然后重新添加新的数据到RecyclerView里面去，这时候记录的滚动距离就不准了；自定义RecyclerView的LinearLayoutManager来计算滚动距离，但是在滑动的时候特别消耗性能，滑动卡顿
+26. AppCompatActivity获得Activity的方法[Android get hosting Activity from a view](https://stackoverflow.com/questions/8276634/android-get-hosting-activity-from-a-view/32973351#32973351)
+27. [Java的正则式首先需要Pattern.compile()后必须要调用find()或者matches()才能找到](https://stackoverflow.com/questions/12911504/rationale-for-matcher-throwing-illegalstateexception-when-no-matching-method-i)
+28. 在自定义控件的构造函数或者其他绘制相关地方使用系统依赖的代码，会导致可视化编辑器无法报错并提示，使用isInEditMode()可以解决在
+29. 在Android Studio下的文件`app.iml`已经制定了assets文件夹的属性，所以直接新建Directory即可
+30. view.layout(l,t,r,b)需要在在子线程中没反应，需要post()或者onAnimationStart中
+31. getGlobalVisibleRect(globalRect)在没有被遮挡（超出屏幕）时和getLocationInWindow数值相同; getDrawingRect(drawingRect)和getLocalVisibleRect(localRect)没有遮挡时测试数值相同都是相对自己的坐标
+32. include设置了id，会覆盖掉layout_activity_head布局文件中根layout的id
+33. 全面屏刘海屏的状态栏是很高的，在使用getLocationInWindow时需要特别注意
+34. 数据库索引失败
+35. onCreate期间调用setHasOptionsMenu
+Effective Java（第3版）（英文版);9787121342608
+深入理解Java虚拟机:JVM高级特性与最佳实践(第2版) ;9787111421900
+Java编程思想(英文版•第4版);9787111212508;Think in Java
+
+
+学习JEE规范，去看JBoss源码；学习类加载器，就去看OSGI源码
+

@@ -26,6 +26,13 @@ p是个数组，所以 sizeof(p) 返回数组的占用大小，64 位情况下
 多个文件：` grep "text" -n file_1 file_2 `
 #### find命令
 
+#### 位运算
+```
+#define setbit(x,y)  x|=(1<<y)  
+#define clrbit(x,y)  x&=~(1<<y)  
+#define reversebit(x,y)  x^=(1<<y)  
+#define getbit(x,y)   ((x) >> (y)&1)
+```
 
 #### TCP发送缓冲区最小可以设置为
  
