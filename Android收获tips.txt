@@ -130,13 +130,22 @@ ThreadLocal，线程中私有数据。主要用于线程改变内部的数据时
 30. view.layout(l,t,r,b)需要在在子线程中没反应，需要post()或者onAnimationStart中
 31. getGlobalVisibleRect(globalRect)在没有被遮挡（超出屏幕）时和getLocationInWindow数值相同; getDrawingRect(drawingRect)和getLocalVisibleRect(localRect)没有遮挡时测试数值相同都是相对自己的坐标
 32. include设置了id，会覆盖掉layout_activity_head布局文件中根layout的id
-33. 全面屏刘海屏的状态栏是很高的，在使用getLocationInWindow时需要特别注意
+33. 全面屏刘海屏的状态栏是很高的，在使用getLocationInWindow时需要特别注意，需要减去的状态栏高度会更高
+35. onCreate期间调用setHasOptionsMenu，则该fragment在其后的onCreateOptionsMenu回调可以接受到设置标题栏的menu
+36. 在selector的xml写法中，vector图标不能用android:color/transparent来表明空图像，比如`<item android:drawable="@android:color/transparent" android:state_checked="false" />`的写法是错误的，直接在selector的xml中设置item为透明会导致高宽都变化为0，并且高宽不会自动更新。应该更改vector的文件的颜色为android:fillColor="#00000000"
+37. 设置Acticity为全屏就不会顶起关注键。。。为啥???
+38. viewstub被inflate后会消失，包括它的id，可以使用android:inflatedId="@id/vs_bottom"来规定它被inflate后叫什么，这样可以防止viewStub消失后其他引用它的布局失去了依赖
+39. rxjava中的timer也可以加入自己的scheduler
+40. viewstub的布局参数应当写到viewstub内，比如margin值，写在layout内是无效的 ,但是padding是可以写在layout内的；ViewStub中不能用merge
+41. android中setOnClickListener会自动设置view为clickable = true，所以自定义的simpleAdapter添加setOnItemClick的时候需要自动添加view的clickable = true
+42. may not a tips:  GreenDao主键自增类型必须是Long，而不是long。否则你会发现id永远为0，永远只有一个数据
+43. onStop可能不会被调用（eg. 新Acitivity采用了透明主题，当前Actiivty不会回调onStop）
+44. 回到原Activity
+
+Android开发艺术探索 9787121269394
+Android进阶解密 9787121348389
+
+
 34. 数据库索引失败
-35. onCreate期间调用setHasOptionsMenu
-Effective Java（第3版）（英文版);9787121342608
-深入理解Java虚拟机:JVM高级特性与最佳实践(第2版) ;9787111421900
-Java编程思想(英文版•第4版);9787111212508;Think in Java
-
-
 学习JEE规范，去看JBoss源码；学习类加载器，就去看OSGI源码
 

@@ -1,0 +1,4 @@
+UserProfileFragment 中的 mTabsElements.onActivityResult为啥？
+为你精选里的既然是用momoid来排除，distinct应该用set啊
+
+注释tabLayout中如果一页对应一个fragment是正常的，而点点中的照片墙一个tab对应的一组图片，在手动滑过tab的时候onTabSelected会跳到到图片组开头（正常逻辑点击tab也会跳到图片组开头），这是为什么点点照片墙的tabLayout的click是个假的的原因
