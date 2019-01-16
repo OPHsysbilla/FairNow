@@ -127,7 +127,7 @@ ThreadLocal，线程中私有数据。主要用于线程改变内部的数据时
 27. [Java的正则式首先需要Pattern.compile()后必须要调用find()或者matches()才能找到](https://stackoverflow.com/questions/12911504/rationale-for-matcher-throwing-illegalstateexception-when-no-matching-method-i)
 28. 在自定义控件的构造函数或者其他绘制相关地方使用系统依赖的代码，会导致可视化编辑器无法报错并提示，使用isInEditMode()可以解决在
 29. 在Android Studio下的文件`app.iml`已经制定了assets文件夹的属性，所以直接新建Directory即可
-30. view.layout(l,t,r,b)需要在在子线程中没反应，需要post()或者onAnimationStart中
+30. **view.layout(l,t,r,b)在子线程中没反应，需要post()或者onAnimationStart中**
 31. getGlobalVisibleRect(globalRect)在没有被遮挡（超出屏幕）时和getLocationInWindow数值相同; getDrawingRect(drawingRect)和getLocalVisibleRect(localRect)没有遮挡时测试数值相同都是相对自己的坐标
 32. include设置了id，会覆盖掉layout_activity_head布局文件中根layout的id
 33. 全面屏刘海屏的状态栏是很高的，在使用getLocationInWindow时需要特别注意，需要减去的状态栏高度会更高
@@ -140,7 +140,10 @@ ThreadLocal，线程中私有数据。主要用于线程改变内部的数据时
 41. android中setOnClickListener会自动设置view为clickable = true，所以自定义的simpleAdapter添加setOnItemClick的时候需要自动添加view的clickable = true
 42. may not a tips:  GreenDao主键自增类型必须是Long，而不是long。否则你会发现id永远为0，永远只有一个数据
 43. onStop可能不会被调用（eg. 新Acitivity采用了透明主题，当前Actiivty不会回调onStop）
-44. 回到原Activity
+44. 回到原Activity  onRestart -> onStart -> onResume
+45. 每个View都可以onSaveInstanceState，并且onSaveInstanceState及onRestoreInstanceState是和onStop及onStart绑定的，onSaveInstanceState在onStop前，onRestoreInstanceState在onStart后
+46. onNewIntent()---->onResart()------>onStart()----->onResume(). 且当调用到onNewIntent(intent)的时候，需要在onNewIntent() 中使用setIntent(intent)赋值给Activity的Intent.否则，后续的getIntent()都是得到老的Intent。
+47. singleTask的Actiivty被启用时，在其上的栈顶都会被清空（默认具有FLAG_ACTIVITY_CLEAR_TOP）
 
 Android开发艺术探索 9787121269394
 Android进阶解密 9787121348389
