@@ -1,4 +1,28 @@
 # 笔记
+<CoordinatorLayoutCompat>
+    <AppBarLayout>
+        <CollapsingToolbarLayout> 
+            <UserProfilePhotoPager> --照片墙
+        </CollapsingToolbarLayout>
+        <MomoTabLayout/>   -- 资料/动态/视频
+    <AppBarLayout>
+    <MomoViewPager>   -- 动态与视频的fragment
+        <LoadMoreRecyclerView/> --资料页
+    </MomoViewPager>
+    ...
+</CoordinatorLayoutCompat>
+
+1. 资料/动态/视频是一个ViewPager，特别的地方在于，资料页是RecycleView，而动态/视频各是一个Fragment，因此这个ViewPager的PagerAdapter仿写了FragmentPagerAdapter，当position在0的时候返回的是RecycleView，其他的时候操作的是Fragment。因此我们可以看到xml布局里ViewPager包裹了一个RecycleView
+2. recycleView为什么可以在PagerAdapter中重建而ImageView不行？
+
+
+
+1. Element里有一套自己的管理方式，每个element会保存一个该view的引用，可以得到Context和其他一起注册的lement。
+
+这是因为这ElementManager里的使用一个列表管理每个element，在elment创建之初通过attach使得每个elment也持有elementManager中一个公共接口的的引用。element可以通过这个公共接口来获得ElementManager中的信息，包括context和其他elements的信息。
+ - 这样每个element内部可以getContext，也可以获得其他element
+资料页的ProfileElement继承自Element，内部主要保存了user及isSelf的信息
+
 
 
 # 疑问🤔️

@@ -118,7 +118,7 @@ ThreadLocal，线程中私有数据。主要用于线程改变内部的数据时
 一个既是static又是final的域只占据一段不能改变的存储空间，只有一份。
 20. View的UI刷新，不会导致阻塞的原因是View 的绘制与 Java 代码的looper无关，而是由底层 SurfaceFlinger 自身的事件处理机制处理的
  - > 因为不光是gui，同样的道理在几乎所有编程领域里都是这样的，这背后是线程同步的开销问题。显然两个线程不能同时draw，否则屏幕会花；不能同时insert map，否则内存会花；不能同时write buffer，否则文件会花。需要互斥，比如锁。结果就是同一时刻只有一个线程可以做ui。那么当两个线程互斥几率较大时，或者保证互斥的代码复杂时，选择其中一个长期持有其他发消息就是典型的解决方案。所以普遍的要求ui只能单线程
-21. onChildDraw影响触摸事件的接受顺序
+21. onChildDraw影响触摸事件的接受顺序，同样影响绘制顺序
 22. 对组件 Activity 而言，viewRootImpl 的初始化在 onCreate 之后，onResume 之后，故在onCreate里开子线程更新UI不会报错
 23. [Glide中into()同一View，但显示不同的图片时（url不同），是使用的同一个Bitmap引用地址，只是像素不一样（在onResourceReady()里可以打印得到的bitmap的地址是一样的）](https://www.cnblogs.com/linguanh/p/8514643.html)。这是因为BitmapPool会复用Request，可能会拿到擦除过的bitmap
 24. bitmap对象是通过env->NewOject(...)，所以是分配在虚拟机中的
@@ -144,6 +144,23 @@ ThreadLocal，线程中私有数据。主要用于线程改变内部的数据时
 45. 每个View都可以onSaveInstanceState，并且onSaveInstanceState及onRestoreInstanceState是和onStop及onStart绑定的，onSaveInstanceState在onStop前，onRestoreInstanceState在onStart后
 46. onNewIntent()---->onResart()------>onStart()----->onResume(). 且当调用到onNewIntent(intent)的时候，需要在onNewIntent() 中使用setIntent(intent)赋值给Activity的Intent.否则，后续的getIntent()都是得到老的Intent。
 47. singleTask的Actiivty被启用时，在其上的栈顶都会被清空（默认具有FLAG_ACTIVITY_CLEAR_TOP）
+48. fitsSystemWindows=true要慎用，很多坑。比如WebView中输入框获取焦点弹出软键盘时出现抖动，还有哪个View设置了fitsSystemWindows=true软键盘弹出时哪个View就会被顶上去；
+49. WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS不要用，会导致EMUI3.1的系统下面虚拟按键挡住布局
+50. 事件传递
+```
+bool dispatchTouchEvent(MotionEvent ev){
+    bool consume = false;
+    if(onInterceptTouchEvent(ev)){
+        consume = onTouchEvent(ev);
+    } else {
+        consume = child.dispatchTouchEvent(ev);
+    }
+}
+```
+51. FragmentStatePagerAdapter和FragmentPagerAdapter都没有从viewGroup中removeView，而是transaction中detach/ remove掉了， 因此viewPager在保存不是fragment的时候需要警惕，其他view并不会像fragment一样刷新
+52. PathMeasure的forceClosed参数对绑定的Path不会产生任何影响，例如一个折线段的Path，本身是没有闭合的，forceClosed设置为True的时候，PathMeasure计算的Path是闭合的，但Path本身绘制出来是不会闭合的。
+forceClosed参数对PathMeasure的测量结果有影响，还是例如前面说的一个折线段的Path，本身没有闭合，forceClosed设置为True，PathMeasure的计算就会包含最后一段闭合的路径，与原来的Path不同。
+53. 
 
 Android开发艺术探索 9787121269394
 Android进阶解密 9787121348389
