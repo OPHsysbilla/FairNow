@@ -151,14 +151,14 @@ PathMeasure.TANGENT_MATRIX_FLAG | PathMeasure.POSITION_MATRIX_FLAG);`
 这个方法是用于得到路径上某一长度的位置以及该位置的正切值的矩阵
 95. **透明主题的坑**：
    - 坑一：透明主题的 Activity 如果弹出键盘，并且是 adjustResize 模式，在键盘弹出的一瞬间可以看到前一个 Activity
-     >  原因：键盘弹起时，Activity 重新计算了高度缩短了，而键盘弹起有一个动画，在动画没有执行完毕之前，键盘所占用的空间上没有别的布局只有 Window ，而 Window 是透明的因此就看到了上一个 Activity
-尝试的解决方案：在动画执行完毕后，将 Window 的背景设置为不透明，但是失败了，见坑二
+     >  - 原因：键盘弹起时，Activity 重新计算了高度缩短了，而键盘弹起有一个动画，在动画没有执行完毕之前，键盘所占用的空间上没有别的布局只有 Window ，而 Window 是透明的因此就看到了上一个 Activity
+     >  - 尝试的解决方案：在动画执行完毕后，将 Window 的背景设置为不透明，但是失败了，见坑二
    
    - 坑二：如果当前的 Window 背景带有透明度，在动态改变背景的时候会闪一下屏，如果 Window 的初始背景颜色没有透明度，动态改变背景很完美
-     >  原因：不详，目测是 Android 的 bug
-解决方案：无。。。
+     >  - 原因：不详，目测是 Android 的 bug
+     >  - 解决方案：无。。。
    
-    - 坑三：也是由解决坑二造成的，我试图通过监听键盘弹起事件来手动调节布局，这样 Activity 不需要 resize 也就没有那个 bug，但是发现监听键盘弹起的方法基本都是监听 Activity 重新布局后对比高度来判断的，因此在 adjustNothing 状态下无效，值得一提的是，跟三弟交流发现他们钻了一个空子，当 Activity 为全屏状态时 adjustResize 是不生效的，但是可以监听到键盘弹出，所以相当于是adjustNothing的效果，但这种情况没法在我这个项目使用。
+   - 坑三：也是由解决坑二造成的，我试图通过监听键盘弹起事件来手动调节布局，这样 Activity 不需要 resize 也就没有那个 bug，但是发现监听键盘弹起的方法基本都是监听 Activity 重新布局后对比高度来判断的，因此在 adjustNothing 状态下无效，值得一提的是，跟三弟交流发现他们钻了一个空子，当 Activity 为全屏状态时 adjustResize 是不生效的，但是可以监听到键盘弹出，所以相当于是adjustNothing的效果，但这种情况没法在我这个项目使用。
 96. 对window.addFlags需要在`setContentView`前
 97. sqlLight数据库`not null`只针对于text为`null`的情况，但是text为`""`时是可以插入的。
 98. 数据库的unique属性的列，insert()一旦失败，则批量都失败。此时可以用insert or replace，不会影响批量中其他数据的插入。
