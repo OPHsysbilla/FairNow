@@ -176,14 +176,29 @@ forceClosed参数对PathMeasure的测量结果有影响，还是例如前面说�
 58. 对window.addFlags需要在setContentView前
 59. sqlLight数据库**Not null**只针对于text为null的情况，但是text为""时是可以插入的。
 60. 数据库的unique属性的列，insert()一旦失败，则批量都失败。此时可以用insert or replace，不会影响批量中其他数据的插入。
-61. 主流的java虚拟机没有采用引用计数算法，其中最主要的原因就是它很难解决对象之间互相循环引用的问题。
-其使用的可达性分析算法中可以作为“gc roots”的对象：
-（1）虚拟机栈（栈针中的局部变量表）中引用的对象
-（2）方法区中类静态属性引用的对象
-（3）方法区中常量引用的对象
-（4）本地方法栈中JNI引用的对象
-
-
+61. setRetainInstance(true);设置为true，表示 configuration change 的时候，fragment实例不会背重新创建，即重建时不会经过onDestroy和onCreate。fragment 该方法也常常被用来处理 Activity re-creation 时候数据的保存。因此可以干很多骚操作，但即使是使用setRetainInstance还是有一定概率会被回收的，重新创建fragment后，requestCode和callback的关系就没有了。
+62. rxjava2不接受null
+63. 随屏幕旋转（横竖屏幕切换）DialogFragment对话框随之自动调整对话框大小。而AlertDialog和PopupWindow随屏幕切换而消失。 DialogFragment的出现解决 横竖屏幕切换Dialog消失的问题。
+64. 
+```
+Window window = getDialog().getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+```
+```
+等效于
+```
+ DisplayMetrics dm = new DisplayMetrics();
+    getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+    if (null != window) {
+        window.setLayout(dm.widthPixels, dm.heightPixels);
+    }
+```
+65. allowstateloss：fragment的commit和commitAllowingStateLoss的区别
+[Fragment Transactions & Activity State Loss](https://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html)
+  > the problem stems from the fact that these Bundle objects represent a snapshot of an Activity at the moment onSaveInstanceState() was called, and nothing more. That means when you call FragmentTransaction#commit() after onSaveInstanceState() is called, the transaction won’t be remembered because it was never recorded as part of the Activity’s state in the first place. From the user’s point of view, the transaction will appear to be lost, resulting in accidental UI state loss. In order to protect the user experience, Android avoids state loss at all costs, and simply throws an IllegalStateException whenever it occurs.
+66. [Android 代码proguard混淆之后的错误log查看方法](https://blog.csdn.net/attheway/article/details/44220729)？
+项目目录的progurad下有一个mapping.txt文件 这是混淆后的名字和原名字的映射关系。在ADT安装目录的sdk\tools\proguard\bin下有三个工具，其中proguardgui.bat就是用来还原的图形化工具。
+onSaveInstanceState()再onStop()前调用，而再Honeycomb前，是在onPause()前立即调用的，因为Honeycomb前对于回收来说一不可见Activity就被kill了，Honeycomb后Activity要在onStop后才能被kill掉
 
 Android开发艺术探索 9787121269394
 Android进阶解密 9787121348389
