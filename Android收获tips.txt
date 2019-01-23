@@ -199,6 +199,12 @@ Window window = getDialog().getWindow();
 66. [Android 代码proguard混淆之后的错误log查看方法](https://blog.csdn.net/attheway/article/details/44220729)？
 项目目录的progurad下有一个mapping.txt文件 这是混淆后的名字和原名字的映射关系。在ADT安装目录的sdk\tools\proguard\bin下有三个工具，其中proguardgui.bat就是用来还原的图形化工具。
 onSaveInstanceState()再onStop()前调用，而再Honeycomb前，是在onPause()前立即调用的，因为Honeycomb前对于回收来说一不可见Activity就被kill了，Honeycomb后Activity要在onStop后才能被kill掉
+67. 6.0后需要动态申请权限，7.0后需要通过FileProvider访问其他的
+68. (Binder死亡通知机制之linkToDeath)[https://www.androiddesignpatterns.com/2013/08/binders-death-recipients.html]
+69. Fragment的可见性：onHiddenChanged()只会在对fragment进行show/hide变换时调用，第一次进入的时候不会调用，在使用beginTransaction().hide(Fragment)会被调用，而且是在onResume之前；
+而在viewpager中的fragment则完全不一样，需要手动调用setUserVisible(boolean)。 
+        - [注意onHiddenChanged的特殊情况](http://jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0422/7863.html)
+        - [Android Fragment可见性的判断与监听完全实现](https://www.smwenku.com/a/5ba1abcd2b71771a4da995ba/zh-cn/)
 
 Android开发艺术探索 9787121269394
 Android进阶解密 9787121348389
